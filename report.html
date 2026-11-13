@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Report a concern | Mutiara Connect</title>
+  <link rel="icon" href="images/brand/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/theme.css?v=2">
+  <!-- Page-specific styles go in a <style> block here or in css/report.css -->
+</head>
+<body data-page="report">
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===== HEADER (copy as-is to every page) ===== -->
+  <header class="site-header">
+    <div class="utility-bar">
+      <div class="container">
+        <a class="brand" href="index.html"><img src="images/brand/logo-white.svg" alt="Mutiara Connect home" width="331" height="60"></a>
+        <div class="utility-links">
+          <span class="hotline">24-hour project line <strong>1-800-00-0000</strong></span>
+          <div class="lang-switch" role="group" aria-label="Language">
+            <button type="button" aria-pressed="true">EN</button>
+            <button type="button" aria-pressed="false">BM</button>
+            <button type="button" aria-pressed="false">中文</button>
+          </div>
+          <a href="login.html">Log in</a>
+          <a class="btn btn-sm btn-light" href="#alerts">Get alerts</a>
+        </div>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+      </div>
+    </div>
+    <nav class="main-nav" id="main-nav" aria-label="Main">
+      <div class="container">
+        <ul>
+          <li><a href="index.html" data-nav="home">Home</a></li>
+          <li><a href="closures.html" data-nav="closures">Closures and detours</a></li>
+          <li><a href="schedule.html" data-nav="schedule">Works schedule</a></li>
+          <li><a href="business-access.html" data-nav="business">Business access</a></li>
+          <li class="nav-report"><a href="report.html" data-nav="report">Report a concern</a></li>
+          <li><a href="track.html" data-nav="track">Track a report</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- ===== END HEADER ===== -->
+
+  <main id="main">
+    <!-- Page header: keep this on every inner page -->
+    <section class="page-header">
+      <div class="container">
+        <p class="breadcrumb"><a href="index.html">Home</a> / Report a concern</p>
+        <h1>Report a concern</h1>
+        <p>Tell us what is happening and where. We send your report to the team responsible and give you a ticket ID to track it.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <!-- TODO (Member B): build this page for F3 (FR8). Delete this panel when done. -->
+        <div class="panel">
+          <h2>Page in progress</h2>
+          <p>Complaint form: category, description, location (nearest station), optional photo, then a confirmation screen with the ticket ID.</p>
+          <p>Owner: Member B. Use the shared components in <code>css/theme.css</code> (see THEME.md) so this page matches the homepage.</p>
+          <a class="btn btn-primary" href="index.html">Back to home</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER (copy as-is to every page) ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <form class="alert-signup" id="alerts" action="#alerts" onsubmit="return false">
+          <h2>Get works alerts for your area</h2>
+          <label for="alert-station">Nearest station</label>
+          <select id="alert-station">
+            <option>S14 Gelugor</option><option>S13 Jalan Universiti</option><option>S07 Jalan Tengah</option><option>S20 KOMTAR</option><option>S09 Bukit Jambul</option>
+          </select>
+          <label for="alert-email">Email</label>
+          <input id="alert-email" type="email" placeholder="name@example.com">
+          <button class="btn btn-amber" type="submit">Subscribe</button>
+        </form>
+        <div>
+          <h2>Travel</h2>
+          <ul><li><a href="closures.html">Closures and detours</a></li><li><a href="schedule.html">Works schedule</a></li><li><a href="business-access.html">Business access</a></li></ul>
+        </div>
+        <div>
+          <h2>Feedback</h2>
+          <ul><li><a href="report.html">Report a concern</a></li><li><a href="track.html">Track a report</a></li></ul>
+        </div>
+        <div>
+          <h2>Staff</h2>
+          <ul><li><a href="login.html">Log in</a></li><li><a href="authority.html">Authority portal</a></li><li><a href="admin.html">Admin dashboard</a></li></ul>
+        </div>
+        <div class="hotline-box">
+          24-hour project line
+          <span class="num">1-800-00-0000</span>
+          For emergencies on site, call 999.
+        </div>
+      </div>
+      <div class="footer-base">
+        <img src="images/brand/logo-white.svg" alt="Mutiara Connect" width="331" height="60">
+        <span>CMT322 group project prototype with sample data. Photos and alignment map: MRT Corp and Gamuda.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- ===== END FOOTER ===== -->
+
+  <script src="js/main.js?v=2"></script>
+</body>
+</html>

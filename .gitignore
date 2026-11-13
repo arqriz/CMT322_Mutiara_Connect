@@ -1,0 +1,13 @@
+# Course materials and drafts: keep them out of the repo
+*.pptx
+*.pdf
+*.docx
+*.drawio
+CMT322_USER_DIAGRAM*.png
+Claude outputs/
+images/Static-Container-Desktop.png
+images/Property-1Variant5.png
+images/Subtract.png
+images/Penang-Mutiara-Line-crop.jpg
+images/Groundbreaking-Alignment-map.jpg
+images/source_tech-specs-v2-1.jpg

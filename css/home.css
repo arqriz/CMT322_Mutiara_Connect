@@ -1,0 +1,92 @@
+/* Mutiara Connect – homepage only. Shared styles live in theme.css. */
+
+/* Hero: full-width banner photo with the title on top (Sydney Metro pattern) */
+.hero { position: relative; background: var(--navy); color: var(--white); overflow: hidden; }
+.hero-photo {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: 30% 70%;
+}
+/* navy fades in from the right so the text stays readable and the train on the left stays clear */
+.hero::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(4,37,81,0) 30%, rgba(4,37,81,.78) 58%, rgba(4,37,81,.94) 100%);
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  min-height: clamp(480px, 72vh, 680px);
+  display: flex; align-items: center; justify-content: flex-end;
+}
+.hero-text { width: min(560px, 100%); padding: 2.5rem 0; }
+.hero-text h1 { color: var(--white); margin-bottom: 0.7rem; padding-left: 1rem; border-left: 6px solid var(--sky); }
+.hero-text p { font-size: var(--text-lg); color: rgba(255,255,255,.92); margin-bottom: 1.5rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.photo-credit { position: absolute; z-index: 1; left: 0.75rem; bottom: 0.6rem; font-size: 0.75rem; color: rgba(255,255,255,.9); background: rgba(4,37,81,.6); padding: 0.15rem 0.45rem; border-radius: var(--radius-sm); }
+
+/* Tonight strip: the one amber band on the page */
+.tonight { background: var(--amber); color: var(--ink); }
+.tonight .container { display: flex; align-items: center; gap: 1rem 1.5rem; flex-wrap: wrap; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+.tonight strong { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; }
+.tonight p { margin: 0; flex: 1 1 420px; }
+.tonight a { color: var(--ink); font-weight: 700; }
+
+/* Map + station line */
+.line-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+.map-figure { position: sticky; top: 1rem; margin: 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.map-figure img { width: 100%; height: auto; }
+.map-figure figcaption { padding: 0.75rem 1rem; font-size: var(--text-sm); color: var(--ink-soft); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+.station-line { list-style: none; margin: 0; padding: 0; position: relative; }
+.station-line::before { content: ""; position: absolute; left: 11px; top: 14px; bottom: 14px; width: 6px; background: var(--sky); border-radius: 3px; }
+.station-line li { position: relative; padding-left: 40px; }
+.station-line li::before {
+  content: ""; position: absolute; left: 4px; top: 50%; translate: 0 -50%;
+  width: 20px; height: 20px; border-radius: 50%; background: var(--white); border: 4px solid var(--navy);
+}
+.station-line li.has-works::before { border-color: var(--amber); background: var(--navy); }
+.station-line a {
+  display: flex; align-items: center; gap: 0.75rem; padding: 0.38rem 0.5rem; margin-left: -0.5rem;
+  text-decoration: none; color: var(--ink); border-radius: var(--radius-sm);
+}
+.station-line a:hover { background: var(--white); }
+.station-line .code { font: 700 1rem/1 var(--font-display); color: var(--white); background: var(--navy); padding: 0.2rem 0.35rem; border-radius: 2px; min-width: 2.6rem; text-align: center; }
+.station-line .name { font-weight: 700; }
+.station-line .works { margin-left: auto; font-size: var(--text-sm); color: var(--ink-soft); white-space: nowrap; }
+.station-line .has-works .works { color: #6B4A00; font-weight: 700; }
+.line-legend { display: flex; gap: 1.25rem; flex-wrap: wrap; font-size: var(--text-sm); color: var(--ink-soft); margin: 0 0 1rem; }
+.line-legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 0.4rem; vertical-align: -1px; border: 3px solid var(--navy); background: var(--white); }
+.line-legend .lg-works::before { border-color: var(--amber); background: var(--navy); }
+
+/* Announcements filter */
+.filter-bar { display: flex; align-items: end; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.filter-bar .field { margin: 0; min-width: 260px; }
+.filter-count { color: var(--ink-soft); font-size: var(--text-sm); margin: 0 0 0.6rem; }
+
+/* What do you need to do */
+.tasks { display: grid; grid-template-columns: 1.15fr 1fr 1.15fr; gap: 1.5rem; }
+.task { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.task img { width: 100%; height: 210px; object-fit: cover; }
+.task-body { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; gap: 0.5rem; flex: 1; }
+.task-body h3 { margin: 0; }
+.task-body p { margin: 0 0 0.75rem; color: var(--ink-soft); }
+.task-body .btn { margin-top: auto; align-self: flex-start; }
+.task-track { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.task-track h3 { color: var(--white); }
+.task-track p { color: rgba(255,255,255,.85); }
+.task-track label { color: var(--white); font-weight: 700; display: block; margin-bottom: 0.35rem; }
+.task-track input { border-color: transparent; margin-bottom: 0.75rem; }
+.track-line { height: 210px; position: relative; background: #0B3466; overflow: hidden; }
+.track-line svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+@media (max-width: 980px) {
+  .line-grid { grid-template-columns: 1fr; }
+  .map-figure { position: static; }
+  .tasks { grid-template-columns: 1fr; }
+  .task img, .track-line { height: 180px; }
+}
+@media (max-width: 700px) {
+  .hero-photo { position: static; height: 260px; }
+  .hero::after { display: none; }
+  .hero-inner { min-height: 0; display: block; }
+  .hero-text { padding: 1.75rem 0 2rem; }
+  .photo-credit { top: 0.6rem; bottom: auto; }
+}
