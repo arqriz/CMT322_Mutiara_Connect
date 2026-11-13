@@ -3,59 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mutiara Connect | Penang LRT Mutiara Line construction updates</title>
-  <meta name="description" content="Road closures, night works, business access and feedback for the Penang LRT Mutiara Line construction.">
+  <title>Mutiara Connect | Penang LRT Mutiara Line community portal</title>
+  <meta name="description" content="Road closures, works schedules, business access and feedback for the Penang LRT Mutiara Line construction.">
   <link rel="icon" href="images/brand/icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="css/theme.css?v=2">
-  <link rel="stylesheet" href="css/home.css?v=2">
+  <link rel="stylesheet" href="css/theme.css?v=3">
+  <link rel="stylesheet" href="css/home.css?v=3">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- ===== HEADER (copy as-is to every page) ===== -->
-  <header class="site-header">
-    <div class="utility-bar">
+  <!-- ===== HEADER (identical on every page) ===== -->
+  <header>
+    <div class="site-top">
       <div class="container">
-        <a class="brand" href="index.html"><img src="images/brand/logo-white.svg" alt="Mutiara Connect home" width="331" height="60"></a>
-        <div class="utility-links">
-          <span class="hotline">24-hour project line <strong>1-800-00-0000</strong></span>
+        <a class="brand" href="index.html">
+          <img src="images/brand/icon.svg" alt="" width="38" height="38">
+          <span><span class="brand-name">Mutiara Connect</span><span class="brand-sub">Penang LRT Mutiara Line · Community Portal</span></span>
+        </a>
+        <div class="top-actions">
           <div class="lang-switch" role="group" aria-label="Language">
             <button type="button" aria-pressed="true">EN</button>
             <button type="button" aria-pressed="false">BM</button>
             <button type="button" aria-pressed="false">中文</button>
           </div>
-          <a href="login.html">Log in</a>
-          <a class="btn btn-sm btn-light" href="#alerts">Get alerts</a>
+          <button class="text-size" type="button" aria-pressed="false" aria-label="Larger text">A+</button>
+          <a class="btn btn-primary btn-sm" href="login.html">Log In / Register</a>
         </div>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
       </div>
     </div>
-    <nav class="main-nav" id="main-nav" aria-label="Main">
-      <div class="container">
-        <ul>
-          <li><a href="index.html" data-nav="home">Home</a></li>
-          <li><a href="closures.html" data-nav="closures">Closures and detours</a></li>
-          <li><a href="schedule.html" data-nav="schedule">Works schedule</a></li>
-          <li><a href="business-access.html" data-nav="business">Business access</a></li>
-          <li class="nav-report"><a href="report.html" data-nav="report">Report a concern</a></li>
-          <li><a href="track.html" data-nav="track">Track a report</a></li>
-        </ul>
-      </div>
+    <nav class="main-nav container" id="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html" data-nav="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Home</a></li>
+        <li><a href="closures.html" data-nav="closures"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 9.5v4.5"/><path d="M12 17h.01"/></svg>Closures &amp; Detours <span class="count" aria-label="5 active closures">5</span></a></li>
+        <li><a href="schedule.html" data-nav="schedule"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Works Schedule</a></li>
+        <li><a href="business-access.html" data-nav="business"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10v10h16V10"/><path d="M3 4h18l-1.5 6h-15z"/><path d="M10 20v-5h4v5"/></svg>Business Access</a></li>
+        <li><a href="report.html" data-nav="report"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Report a Concern</a></li>
+        <li><a href="track.html" data-nav="track"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m8 12 3 3 5-6"/></svg>My Reports</a></li>
+      </ul>
     </nav>
   </header>
   <!-- ===== END HEADER ===== -->
 
-  <main id="main">
-    <!-- Hero -->
+  <main id="main" class="container">
+    <!-- Banner -->
     <section class="hero" aria-labelledby="hero-title">
       <img class="hero-photo" src="images/hero-mutiara-line.jpg" alt="Artist's impression of a Mutiara Line train on the elevated track beside the Penang coast" width="1920" height="1082">
-      <div class="container hero-inner">
+      <div class="hero-inner">
         <div class="hero-text">
           <h1 id="hero-title">Know what's closed before you leave home</h1>
           <p>Road closures, night works and access to shops along the Mutiara Line, posted by the teams building it.</p>
           <div class="hero-actions">
-            <a class="btn btn-amber" href="closures.html">See closures and detours</a>
-            <a class="btn btn-light" href="report.html">Report a concern</a>
+            <a class="btn btn-white" href="closures.html">See closures and detours</a>
+            <a class="btn btn-ghost-light" href="report.html">Report a concern</a>
           </div>
         </div>
       </div>
@@ -64,22 +64,21 @@
 
     <!-- Tonight -->
     <section class="tonight" aria-label="Tonight's closure">
-      <div class="container">
-        <strong>Tonight, 10.00 pm to 5.00 am</strong>
-        <p>Jalan Sultan Azlan Shah is partly closed between Sunny Point junction and the USM field for tree felling. Use Jalan Tun Dr Awang instead.</p>
-        <a href="closures.html">View the detour</a>
-      </div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 2 20h20z"/><path d="M12 9.5v4.5"/><path d="M12 17h.01"/></svg>
+      <strong>Tonight, 10.00 pm to 5.00 am</strong>
+      <p>Jalan Sultan Azlan Shah is partly closed between Sunny Point junction and the USM field for tree felling. Use Jalan Tun Dr Awang instead.</p>
+      <a href="closures.html">View the detour</a>
     </section>
 
     <!-- Map + stations -->
-    <section class="section section--ground" aria-labelledby="line-title">
-      <div class="container">
-        <div class="section-head">
+    <section class="section">
+      <div class="card">
+        <div class="card-head">
           <div>
-            <h2 id="line-title">Works along the line</h2>
+            <h2>Works along the line</h2>
             <p>29.5 km from Silicon Island to KOMTAR and Penang Sentral. Choose a station to see what's happening near it.</p>
           </div>
-          <a class="btn btn-outline" href="closures.html">Open the full map</a>
+          <a class="btn btn-outline btn-sm" href="closures.html">Open the full map</a>
         </div>
         <div class="line-grid">
           <figure class="map-figure">
@@ -117,16 +116,15 @@
     </section>
 
     <!-- Traffic announcements -->
-    <section class="section" aria-labelledby="notices-title">
-      <div class="container">
-        <div class="section-head">
+    <section class="section">
+      <div class="card">
+        <div class="card-head">
           <div>
-            <h2 id="notices-title">Traffic announcements</h2>
+            <h2>Traffic announcements</h2>
             <p>Every notice shows its dates and working hours so you can plan your trip.</p>
           </div>
-          <a class="btn btn-outline" href="schedule.html">See the works schedule</a>
+          <a class="btn btn-outline btn-sm" href="schedule.html">See the works schedule</a>
         </div>
-
         <form class="filter-bar" onsubmit="return false">
           <div class="field">
             <label for="road-filter">Road</label>
@@ -140,7 +138,6 @@
           </div>
         </form>
         <p class="filter-count" id="filter-count" aria-live="polite">Showing 6 notices</p>
-
         <ul class="notice-list" id="notice-list">
           <li class="notice" data-road="sultan-azlan-shah">
             <div class="date-block" aria-hidden="true"><span class="d">13</span><span class="m">Nov</span><span class="y">2026</span></div>
@@ -208,96 +205,82 @@
     </section>
 
     <!-- Tasks -->
-    <section class="section section--ground" aria-labelledby="tasks-title">
-      <div class="container">
-        <div class="section-head"><h2 id="tasks-title">Something affecting you?</h2></div>
-        <div class="tasks">
-          <article class="task">
-            <img src="images/station-commuters.jpg" alt="" width="1200" height="445">
-            <div class="task-body">
-              <h3>Report a concern</h3>
-              <p>Noise at night, dust, a blocked entrance or an unsafe walkway. Tell us where it is and we send it to the team responsible.</p>
-              <a class="btn btn-primary" href="report.html">Report a concern</a>
-            </div>
-          </article>
-
-          <article class="task task-track">
-            <div class="track-line" aria-hidden="true">
-              <svg viewBox="0 0 400 210" preserveAspectRatio="xMidYMid meet">
-                <line x1="40" y1="105" x2="360" y2="105" stroke="#6EC1E4" stroke-width="8" stroke-linecap="round"/>
-                <circle cx="40" cy="105" r="15" fill="#6EC1E4"/>
-                <circle cx="147" cy="105" r="15" fill="#6EC1E4"/>
-                <circle cx="253" cy="105" r="15" fill="#042551" stroke="#FFFFFF" stroke-width="5"/>
-                <circle cx="360" cy="105" r="15" fill="#0B3466" stroke="#6EC1E4" stroke-width="5"/>
-                <g font-family="Barlow Condensed, Arial Narrow, sans-serif" font-size="19" font-weight="600" fill="#FFFFFF" text-anchor="middle">
-                  <text x="40" y="152">Received</text><text x="147" y="152">Forwarded</text><text x="253" y="152">In action</text><text x="360" y="152" fill="#9FB6CC">Resolved</text>
+    <section class="section" aria-labelledby="tasks-title">
+      <div class="section-head"><h2 id="tasks-title">Something affecting you?</h2></div>
+      <div class="tasks">
+        <article class="task">
+          <img src="images/station-commuters.jpg" alt="" width="1200" height="445">
+          <div class="task-body">
+            <h3>Report a concern</h3>
+            <p>Noise at night, dust, a blocked entrance or an unsafe walkway. Tell us where it is and we send it to the team responsible.</p>
+            <a class="btn btn-primary" href="report.html">Report a concern</a>
+          </div>
+        </article>
+        <article class="task">
+          <div class="track-graphic">
+              <svg viewBox="0 0 400 120" aria-hidden="true">
+                <line x1="40" y1="50" x2="360" y2="50" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="6" stroke-linecap="round"/>
+                <circle cx="40" cy="50" r="13" fill="#FFFFFF"/><circle cx="147" cy="50" r="13" fill="#FFFFFF"/>
+                <circle cx="253" cy="50" r="13" fill="#0B5A5E" stroke="#FFFFFF" stroke-width="5"/><circle cx="360" cy="50" r="13" fill="none" stroke="#FFFFFF" stroke-opacity=".6" stroke-width="4"/>
+                <g font-family="Inter, Arial, sans-serif" font-size="16" font-weight="600" fill="#FFFFFF" text-anchor="middle">
+                  <text x="40" y="95">Received</text><text x="147" y="95">Forwarded</text><text x="253" y="95">In action</text><text x="360" y="95" fill-opacity=".7">Resolved</text>
                 </g>
               </svg>
-            </div>
-            <div class="task-body">
-              <h3>Track a report</h3>
-              <p>Use the ticket ID you got when you sent your report.</p>
-              <form action="track.html" method="get">
-                <label for="ticket">Ticket ID</label>
-                <input id="ticket" name="id" type="text" placeholder="MC-2026-04817" autocomplete="off">
-                <button class="btn btn-amber" type="submit">Track report</button>
-              </form>
-            </div>
-          </article>
-
-          <article class="task">
-            <img src="images/traffic-marshal.jpg" alt="" width="760" height="790" style="object-position: center 30%">
-            <div class="task-body">
-              <h3>Business access</h3>
-              <p>Check whether customers and deliveries can still reach shops on your road, and where the temporary entrances are.</p>
-              <a class="btn btn-primary" href="business-access.html">Check business access</a>
-            </div>
-          </article>
-        </div>
+          </div>
+          <div class="task-body">
+            <h3>Track a report</h3>
+            <p>Use the ticket ID you got when you sent your report.</p>
+            <form class="track-form" action="track.html" method="get">
+              <label class="visually-hidden" for="ticket">Ticket ID</label>
+              <input id="ticket" name="id" type="text" placeholder="e.g. MC-2026-04817" autocomplete="off">
+              <button class="btn btn-primary" type="submit">Track</button>
+            </form>
+          </div>
+        </article>
+        <article class="task">
+          <img src="images/traffic-marshal.jpg" alt="" width="760" height="790" style="object-position: center 30%">
+          <div class="task-body">
+            <h3>Business access</h3>
+            <p>Check whether customers and deliveries can still reach shops on your road, and where the temporary entrances are.</p>
+            <a class="btn btn-primary" href="business-access.html">Check business access</a>
+          </div>
+        </article>
       </div>
+    </section>
+
+    <!-- Alerts -->
+    <section class="alerts-panel" id="alerts" aria-labelledby="alerts-title">
+      <div>
+        <h2 id="alerts-title">Get works alerts for your area</h2>
+        <p>We email you when a closure or night work is planned near your station.</p>
+      </div>
+      <form class="alerts-form" onsubmit="return false">
+        <div>
+          <label for="alert-station">Nearest station</label>
+          <select id="alert-station"><option>S14 Gelugor</option><option>S13 Jalan Universiti</option><option>S07 Jalan Tengah</option><option>S20 KOMTAR</option><option>S09 Bukit Jambul</option></select>
+        </div>
+        <div>
+          <label for="alert-email">Email</label>
+          <input id="alert-email" type="email" placeholder="e.g. aisyah@email.com">
+        </div>
+        <button class="btn btn-white" type="submit">Subscribe</button>
+      </form>
     </section>
   </main>
 
-  <!-- ===== FOOTER (copy as-is to every page) ===== -->
+  <!-- ===== FOOTER (identical on every page) ===== -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-main">
-        <form class="alert-signup" id="alerts" action="#alerts" onsubmit="return false">
-          <h2>Get works alerts for your area</h2>
-          <label for="alert-station">Nearest station</label>
-          <select id="alert-station">
-            <option>S14 Gelugor</option><option>S13 Jalan Universiti</option><option>S07 Jalan Tengah</option><option>S20 KOMTAR</option><option>S09 Bukit Jambul</option>
-          </select>
-          <label for="alert-email">Email</label>
-          <input id="alert-email" type="email" placeholder="name@example.com">
-          <button class="btn btn-amber" type="submit">Subscribe</button>
-        </form>
-        <div>
-          <h2>Travel</h2>
-          <ul><li><a href="closures.html">Closures and detours</a></li><li><a href="schedule.html">Works schedule</a></li><li><a href="business-access.html">Business access</a></li></ul>
-        </div>
-        <div>
-          <h2>Feedback</h2>
-          <ul><li><a href="report.html">Report a concern</a></li><li><a href="track.html">Track a report</a></li></ul>
-        </div>
-        <div>
-          <h2>Staff</h2>
-          <ul><li><a href="login.html">Log in</a></li><li><a href="authority.html">Authority portal</a></li><li><a href="admin.html">Admin dashboard</a></li></ul>
-        </div>
-        <div class="hotline-box">
-          24-hour project line
-          <span class="num">1-800-00-0000</span>
-          For emergencies on site, call 999.
-        </div>
-      </div>
-      <div class="footer-base">
-        <img src="images/brand/logo-white.svg" alt="Mutiara Connect" width="331" height="60">
-        <span>Copyright &copy; 2023 Mutiara Connect. All rights reserved.</span>
-      </div>
+      <span>Mutiara Connect · 24-hour project hotline 1-800-00-0000</span>
+      <nav aria-label="Footer">
+        <a href="authority.html">Authority portal</a>
+        <a href="admin.html">Admin dashboard</a>
+        <span>Prototype with sample data. Images: MRT Corp and Gamuda.</span>
+      </nav>
     </div>
   </footer>
   <!-- ===== END FOOTER ===== -->
 
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>

@@ -45,3 +45,13 @@ document.querySelectorAll('.lang-switch button').forEach(function (b) {
     if (empty) empty.hidden = shown !== 0;
   });
 })();
+
+// 5. A+ button: larger text across the page.
+(function textSize() {
+  var btn = document.querySelector('.text-size');
+  if (!btn) return;
+  btn.addEventListener('click', function () {
+    var on = document.documentElement.classList.toggle('large-text');
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+})();

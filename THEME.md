@@ -1,47 +1,56 @@
 # Mutiara Connect – theme guide
 
-Every page must look like `index.html`. Follow these rules and the pages will match.
+All pages use the team layout: white header, dark teal nav bar, light grey page, white rounded cards. Link `css/theme.css` and the pages will match.
 
 ## Start a page
-1. Open the starter page for your feature (e.g. `report.html`), or copy `template.html` for a new one.
-2. Keep the header, page header and footer exactly as they are.
-3. Set `<body data-page="...">` so your page is highlighted in the nav: `home`, `closures`, `schedule`, `business`, `report`, `track` (login, authority and admin are not in the nav).
-4. Build your content inside `<section class="section"><div class="container"> ... </div></section>`.
-5. Put styles only your page needs in a `<style>` block or `css/your-page.css`. Never change the header, nav or footer in your own CSS. If they need to change, change `css/theme.css` and tell the group.
+1. Copy `template.html` (or open your starter page).
+2. Keep the header and footer exactly as they are. They are marked with comments.
+3. Set `<body data-page="...">` so your nav item is highlighted: `home`, `closures`, `schedule`, `business`, `report`, `track`.
+4. Put your content inside `<main id="main" class="container">`, starting with the `page-header` (breadcrumb, h1, one-line intro), then `section` + `card` blocks.
+5. Page-only styles go in a `<style>` block or `css/your-page.css`. Never restyle the header, nav or footer per page.
 
-## Colours (use the variables, not hex codes)
-| Variable | Hex | Use it for |
+## Already built your page with your own CSS?
+Swap three things so it matches:
+- Header logo tile → `<img src="images/brand/icon.svg" width="38" height="38" alt="">`
+- Add `<link rel="stylesheet" href="css/theme.css?v=3">` before your own CSS (or copy the colours below into yours)
+- Use the same nav items and order: Home, Closures & Detours, Works Schedule, Business Access, Report a Concern, My Reports
+
+## Colours
+| Variable | Hex | Use |
 |---|---|---|
-| `--navy` | #042551 | Header, footer, page headers, headings |
-| `--blue` | #2A6078 | Buttons, links |
-| `--sky` | #6EC1E4 | The line, active nav, focus outline |
-| `--amber` | #F2A900 | Closures and alerts only |
-| `--ground` | #F2F4F6 | Grey background bands |
-| `--ink` | #17212B | Body text |
+| `--nav` | #13343B | Nav bar |
+| `--teal` | #14696B | Buttons, links, active language |
+| `--teal-mid` | #2A8A8C | Active nav pill, the station line |
+| `--teal-soft` | #E3F2F2 | Light teal fills, date blocks |
+| `--bg` | #F4F5F9 | Page background, input fill |
+| `--border` | #E2E5EA | Card and input borders |
+| `--ink` | #1B2530 | Text |
+| `--muted` | #5F6B76 | Secondary text |
+| `--orange` | #E2531B | Counts, works markers |
 
-## Fonts
-- Headings, nav, station codes, dates: **Barlow Condensed** (`--font-display`)
-- Body text, buttons, forms: **Atkinson Hyperlegible** (`--font-body`), 18px. It is designed for low-vision readers, which suits elderly and OKU users.
-Both are in `fonts/` and load offline.
+Teal gradient panel (log-in page, alerts box): `linear-gradient(135deg, #0B5A5E, #129BA1)`.
 
-## Components in theme.css
+## Font
+Inter (400, 500, 600, 700), stored in `fonts/`, works offline.
+
+## Classes
 | Need | Class |
 |---|---|
-| Buttons | `btn btn-primary`, `btn btn-amber`, `btn btn-outline`, add `btn-sm` for small |
-| Station sign | `<a class="station" href="..."><b>S14</b><span>Gelugor</span></a>` |
-| Notice type | `tag tag-closure`, `tag tag-lane`, `tag tag-walk`, `tag tag-business` |
-| Notice list with date block | copy one `<li class="notice">` from `index.html` |
-| Boxed content | `panel` |
-| Form field | `<div class="field"><label>…</label><input …></div>`; add `has-error` and `<span class="error-text">` for errors |
-| Complaint status | `<ol class="status-steps">` with `done` / `current` on the `<li>` |
-| Data table | `<table class="table">` |
+| Buttons | `btn btn-primary`, `btn btn-outline`, `btn btn-white` (on teal), add `btn-sm` |
+| White box | `card` |
+| Status | `pill pill-received`, `pill-forwarded`, `pill-action`, `pill-resolved` |
+| Notice type | `tag tag-closure`, `tag-lane`, `tag-walk`, `tag-business` |
+| Station | `<a class="station" href="..."><b>S14</b>Gelugor</a>` |
+| Notice with date block | copy one `<li class="notice">` from `index.html` |
+| Form field | `<div class="field"><label>…</label><input …></div>` |
+| Progress | `<ol class="status-steps">` with `done` / `current` |
+| Table | `<table class="table">` |
 
-## Writing on the page
-- Sentence case for headings and buttons ("Report a concern", not "REPORT A CONCERN").
-- Buttons say what happens: "Submit report", "Track report", "Forward to authority".
-- Use the real station codes and names (A01 PSR-A to S20 KOMTAR, S31 Penang Sentral).
-- Complaint statuses are always: Received, Forwarded, In action, Resolved.
+## Words
+- Statuses are always Received, Forwarded, In action, Resolved.
+- Use real station codes: A01 PSR-A to S20 KOMTAR, S31 Penang Sentral.
+- Ticket IDs look like MC-2026-04817.
 
 ## Logo and images
-- `images/brand/logo.svg` on white, `logo-white.svg` on navy, `icon.svg` as the favicon. Don't recolour or stretch them.
-- Photos and the alignment map are from MRT Corp and Gamuda: keep the credit in the footer and list them in the report's references.
+- `images/brand/icon.svg` in the header, `logo.svg` / `logo-white.svg` where a full wordmark is needed.
+- Photos and the alignment map are from MRT Corp and Gamuda: keep the credit in the footer and the report references.
