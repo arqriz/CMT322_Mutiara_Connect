@@ -105,7 +105,7 @@
         '<td class="nowrap">' + S.fmtDate(c.forwarded) + '</td>' +
         '<td>' + dueText(c) + '</td>' +
         '<td>' + S.pill(c.status) + '</td>' +
-        '<td class="actions"><button class="btn btn-sm ' + (c.status === 'Resolved' ? 'btn-outline' : 'btn-primary') + '" type="button" data-open="' + c.id + '">' + (c.status === 'Resolved' ? 'View' : 'Respond') + '</button></td>' +
+        '<td class="actions"><button class="btn btn-sm ' + (c.status === 'Resolved' ? 'btn-outline' : 'btn-primary') + '" type="button" data-open="' + c.id + '">' + (c.status === 'Resolved' ? 'View' : 'View &amp; respond') + '</button></td>' +
       '</tr>';
     }).join('') : '<tr class="empty-row"><td colspan="7">No complaints match this filter.</td></tr>';
   }
