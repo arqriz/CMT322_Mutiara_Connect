@@ -6,7 +6,7 @@
   <title>Admin Dashboard | Mutiara Connect</title>
   <link rel="icon" href="images/brand/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/theme.css?v=3">
-  <!-- Page-specific styles: add a <style> block here or css/admin.css -->
+  <link rel="stylesheet" href="css/staff.css?v=3">
 </head>
 <body data-page="admin">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -51,16 +51,203 @@
       <p>For administrators: forward new complaints to the right authority, monitor response times, and manage users and content.</p>
     </section>
 
+    <!-- Signed-in administrator + view switch (Complaint Manager, Content Manager) -->
+    <section class="staff-bar" aria-label="Signed-in account">
+      <div class="staff-id">
+        <span class="avatar" id="who-initials" aria-hidden="true">NA</span>
+        <div><strong id="who-name">Nurul Aina</strong><span id="who-role">Complaint Manager · Platform administration</span></div>
+      </div>
+      <div class="field">
+        <label for="role">View as</label>
+        <select id="role">
+          <option value="complaints">Complaint Manager</option>
+          <option value="content">Content Manager</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Summary (changes with the role) -->
+    <section class="section" aria-label="Summary">
+      <div class="stats" id="stats"></div>
+    </section>
+
     <section class="section">
-      <!-- TODO (Member D): build this page for F5 (FR13 to FR15). Delete this card when done. -->
-      <div class="card">
-        <h2>Page in progress</h2>
-        <p>Complaint Manager and Content Manager views. Use .table for lists and .pill for statuses.</p>
-        <p>Owner: Member D. Use the shared classes in <code>css/theme.css</code> (see THEME.md) so this page matches the homepage.</p>
-        <a class="btn btn-primary" href="index.html">Back to home</a>
+      <div class="card" id="admin-tabs">
+        <div class="tabs" role="tablist" aria-label="Administrator tasks">
+          <button class="tab" type="button" role="tab" id="tab-review" aria-controls="panel-review" aria-selected="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>Complaint manager <span class="count" id="tab-review-count">0</span>
+          </button>
+          <button class="tab" type="button" role="tab" id="tab-dashboard" aria-controls="panel-dashboard" aria-selected="false">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Response times
+          </button>
+          <button class="tab" type="button" role="tab" id="tab-accounts" aria-controls="panel-accounts" aria-selected="false">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M17 11h5M19.5 8.5v5"/></svg>Accounts &amp; roles <span class="count" id="tab-accounts-count">0</span>
+          </button>
+          <button class="tab" type="button" role="tab" id="tab-content" aria-controls="panel-content" aria-selected="false">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>Published content
+          </button>
+        </div>
+
+        <!-- FR13: review, categorise and forward complaints -->
+        <div class="tab-panel" role="tabpanel" id="panel-review" aria-labelledby="tab-review" tabindex="0">
+          <div class="card-head">
+            <div>
+              <h2>Review and forward complaints</h2>
+              <p>Check the category, then forward each new complaint to the authority responsible. The reporter sees the status change to Forwarded.</p>
+            </div>
+          </div>
+          <form class="toolbar" onsubmit="return false">
+            <div class="field">
+              <label for="r-status">Status</label>
+              <select id="r-status">
+                <option value="Received">Received (new)</option>
+                <option value="Forwarded">Forwarded</option>
+                <option value="In action">In action</option>
+                <option value="Resolved">Resolved</option>
+                <option value="all">All statuses</option>
+              </select>
+            </div>
+            <div class="field grow">
+              <label for="r-search">Search</label>
+              <input id="r-search" type="search" placeholder="Ticket ID, concern or road">
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="visually-hidden">Complaints</caption>
+              <thead><tr><th scope="col">Ticket</th><th scope="col">Complaint</th><th scope="col">Category</th><th scope="col">Received</th><th scope="col">Status</th><th scope="col" class="actions">Authority</th></tr></thead>
+              <tbody id="review-rows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- FR14: counts, categories and average response time per authority -->
+        <div class="tab-panel" role="tabpanel" id="panel-dashboard" aria-labelledby="tab-dashboard" tabindex="0" hidden>
+          <div class="split">
+            <div>
+              <div class="card-head">
+                <div>
+                  <h2>Average first response by authority</h2>
+                  <p>Hours from forwarding to the authority's first official response. Target: 72 hours.</p>
+                </div>
+              </div>
+              <ul class="bars" id="response-bars"></ul>
+              <p class="bar-note"><span aria-hidden="true">▏</span>The dark line marks the 72-hour target. Orange bars are over target.</p>
+              <div class="table-wrap gap-top">
+                <table class="table">
+                  <caption class="visually-hidden">Complaints by authority</caption>
+                  <thead><tr><th scope="col">Authority</th><th scope="col">Assigned</th><th scope="col">Waiting reply</th><th scope="col">Overdue</th><th scope="col">Resolved</th></tr></thead>
+                  <tbody id="authority-rows"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="form-box">
+              <h3>Complaints by category</h3>
+              <ul class="bars" id="category-bars"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- FR15: approve accounts and assign roles -->
+        <div class="tab-panel" role="tabpanel" id="panel-accounts" aria-labelledby="tab-accounts" tabindex="0" hidden>
+          <div class="card-head">
+            <div>
+              <h2>Accounts waiting for approval</h2>
+              <p>Authorities cannot register themselves. Check the request with the agency before approving.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="visually-hidden">Account requests</caption>
+              <thead><tr><th scope="col">Name</th><th scope="col">Organisation</th><th scope="col">Requested role</th><th scope="col">Requested</th><th scope="col"><span class="visually-hidden">Action</span></th></tr></thead>
+              <tbody id="request-rows"></tbody>
+            </table>
+          </div>
+
+          <div class="card-head gap-top-lg">
+            <div>
+              <h2>All users</h2>
+              <p>Change a role from the list. Suspended users cannot log in.</p>
+            </div>
+          </div>
+          <form class="toolbar" onsubmit="return false">
+            <div class="field">
+              <label for="u-type">User type</label>
+              <select id="u-type"><option value="all">All users</option><option>Regular User</option><option>Authority</option><option>Administrator</option></select>
+            </div>
+            <div class="field grow">
+              <label for="u-search">Search</label>
+              <input id="u-search" type="search" placeholder="Name or email">
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="visually-hidden">Users</caption>
+              <thead><tr><th scope="col">Name</th><th scope="col">Role</th><th scope="col">Last active</th><th scope="col">Status</th><th scope="col"><span class="visually-hidden">Action</span></th></tr></thead>
+              <tbody id="user-rows"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- FR15: review, edit or remove published content -->
+        <div class="tab-panel" role="tabpanel" id="panel-content" aria-labelledby="tab-content" tabindex="0" hidden>
+          <div class="card-head">
+            <div>
+              <h2>Published content</h2>
+              <p>Notices posted by authorities and the team. Approve new posts, correct mistakes, or remove anything out of date.</p>
+            </div>
+          </div>
+          <form class="toolbar" onsubmit="return false">
+            <div class="field">
+              <label for="p-status">Status</label>
+              <select id="p-status"><option value="all">All content</option><option>Pending review</option><option>Published</option><option>Removed</option></select>
+            </div>
+          </form>
+          <div class="table-wrap">
+            <table class="table">
+              <caption class="visually-hidden">Published content</caption>
+              <thead><tr><th scope="col">Content</th><th scope="col">Posted by</th><th scope="col">Posted</th><th scope="col">Status</th><th scope="col"><span class="visually-hidden">Action</span></th></tr></thead>
+              <tbody id="content-rows"></tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- Edit content -->
+  <dialog class="staff-dialog" id="edit-dialog" aria-labelledby="ed-title">
+    <form method="dialog" id="edit-form" novalidate>
+      <div class="dialog-head">
+        <div><h2 id="ed-title">Edit content</h2><p id="ed-sub"></p></div>
+        <button class="dialog-close" type="button" data-close aria-label="Close">×</button>
+      </div>
+      <div class="dialog-body">
+        <div class="field" id="ed-head-field">
+          <label for="ed-head">Headline</label>
+          <input id="ed-head" type="text">
+          <span class="error-text" id="ed-error" hidden>The headline cannot be empty.</span>
+        </div>
+        <div class="field">
+          <label for="ed-body">Details</label>
+          <textarea id="ed-body"></textarea>
+        </div>
+        <div class="field">
+          <label for="ed-note">Note to the author <span class="opt">(optional)</span></label>
+          <input id="ed-note" type="text" placeholder="e.g. Corrected the end date">
+        </div>
+      </div>
+      <div class="dialog-foot">
+        <button class="btn btn-outline" type="button" data-close>Cancel</button>
+        <button class="btn btn-primary" type="submit">Save and publish</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg><span></span>
+  </div>
+
 
   <!-- ===== FOOTER (identical on every page) ===== -->
   <footer class="site-footer">
@@ -76,5 +263,7 @@
   <!-- ===== END FOOTER ===== -->
 
   <script src="js/main.js?v=3"></script>
+  <script src="js/staff.js?v=1"></script>
+  <script src="js/admin.js?v=1"></script>
 </body>
 </html>

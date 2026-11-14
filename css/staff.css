@@ -1,0 +1,120 @@
+/* Mutiara Connect – staff pages (Authority Portal, Admin Dashboard).
+   Shared styles live in theme.css; this file only adds what the
+   two staff pages need: role bar, stat tiles, tabs, dialog, bars. */
+
+/* ---------- Signed-in bar ---------- */
+.staff-bar { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem 1.25rem; flex-wrap: wrap; margin-top: 1rem; padding: 0.9rem 1.25rem; border-radius: var(--r); color: #fff; background: linear-gradient(135deg, #0B5A5E, #129BA1); }
+.staff-id { display: flex; align-items: center; gap: 0.8rem; }
+.avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: #fff; color: var(--teal); font-weight: 700; flex: none; }
+.staff-id > div strong { display: block; font-size: 1rem; }
+.staff-id > div span { display: block; font-size: var(--text-sm); color: rgba(255,255,255,.88); }
+.staff-bar .field { margin: 0; display: flex; align-items: center; gap: 0.6rem; }
+.staff-bar .field label { margin: 0; color: #fff; }
+.staff-bar select { width: auto; min-width: 220px; background: #fff; border-color: transparent; }
+
+/* ---------- Stat tiles ---------- */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: var(--r); padding: 1.1rem 1.25rem; box-shadow: var(--shadow); display: flex; gap: 0.9rem; align-items: center; }
+.stat-icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--r-sm); background: var(--teal-soft); color: var(--teal); flex: none; }
+.stat-icon svg { width: 22px; height: 22px; }
+.stat-icon.is-orange { background: var(--red-bg); color: var(--orange); }
+.stat-icon.is-amber { background: var(--amber-bg); color: var(--amber-ink); }
+.stat-icon.is-green { background: var(--green-bg); color: var(--green-ink); }
+.stat-num { display: block; font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
+.stat-label { display: block; font-size: var(--text-sm); color: var(--muted); }
+
+/* ---------- Tabs ---------- */
+.tabs { display: flex; gap: 0.25rem; flex-wrap: nowrap; overflow-x: auto; border-bottom: 1px solid var(--border); margin: -0.25rem 0 1.25rem; }
+.tab { display: inline-flex; align-items: center; gap: 0.45rem; border: 0; background: none; padding: 0.75rem 0.9rem; font: 600 var(--text-sm)/1.2 var(--font); color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; cursor: pointer; white-space: nowrap; }
+.tab:hover { color: var(--teal); }
+.tab[aria-selected="true"] { color: var(--teal); border-bottom-color: var(--teal); }
+.tab .count { font-size: 0.68rem; }
+.tab-panel:focus-visible { outline-offset: 6px; }
+
+/* ---------- Toolbars and tables ---------- */
+.toolbar { display: flex; align-items: flex-end; gap: 0.75rem 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.toolbar .field { margin: 0; min-width: 200px; }
+.toolbar .grow { flex: 1 1 260px; }
+.toolbar .btn { margin-left: auto; }
+.table-wrap { position: relative; overflow-x: auto; }  /* relative: keeps hidden labels inside the scroll box */
+.table tbody tr:hover { background: #FAFBFC; }
+.table .id { font-weight: 700; white-space: nowrap; }
+.table .sub { display: block; color: var(--muted); font-size: var(--text-xs); }
+.table .actions { text-align: right; white-space: nowrap; }
+.table .actions .btn + .btn { margin-left: 0.35rem; }
+.forward-cell { display: flex; gap: 0.4rem; justify-content: flex-end; }
+.forward-cell select, .inline-select { min-height: 36px; padding: 0.3rem 0.6rem; font-size: var(--text-sm); width: auto; }
+.empty-row td { text-align: center; color: var(--muted); padding: 1.5rem; }
+.due-late { color: var(--error); font-weight: 600; }
+.due-soon { color: var(--amber-ink); font-weight: 600; }
+
+/* Extra pills for content and user states */
+.pill-planned { background: var(--teal-soft); color: var(--teal); }
+.pill-suspended { background: var(--red-bg); color: var(--red-ink); }
+
+/* ---------- Two-column layout: list + form ---------- */
+.split { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.form-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 1.25rem; }
+.form-box h3 { margin-bottom: 0.9rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 0.75rem; }
+.form-box input, .form-box select, .form-box textarea { background: #fff; }
+.form-box textarea { min-height: 90px; }
+.form-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.notice-actions { display: flex; flex-direction: column; gap: 0.4rem; align-self: center; }
+.notice-actions .btn { align-self: stretch; }
+.notice.is-ended { opacity: .55; }
+
+/* ---------- Response-time bars ---------- */
+.bars { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+.bar-row { display: grid; grid-template-columns: 170px 1fr 80px; gap: 0.75rem; align-items: center; font-size: var(--text-sm); }
+.bar-row strong { font-weight: 600; }
+.bar-track { position: relative; height: 14px; background: var(--bg); border-radius: 999px; overflow: hidden; }
+.bar-fill { position: absolute; inset: 0 auto 0 0; background: var(--teal-mid); border-radius: 999px; }
+.bar-fill.is-late { background: var(--orange); }
+.bar-target { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); }
+.bar-value { text-align: right; font-weight: 700; }
+.bar-note { color: var(--muted); font-size: var(--text-xs); margin: 0.9rem 0 0; }
+
+/* ---------- Dialog ---------- */
+.staff-dialog { width: min(640px, calc(100% - 2rem)); border: 0; border-radius: var(--r); padding: 0; color: var(--ink); box-shadow: 0 20px 50px rgba(16, 24, 40, .25); }
+.staff-dialog::backdrop { background: rgba(19, 52, 59, .55); }
+.dialog-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border); }
+.dialog-head h2 { margin: 0; font-size: 1.2rem; }
+.dialog-head p { margin: 0.2rem 0 0; color: var(--muted); font-size: var(--text-sm); }
+.dialog-close { border: 1px solid var(--border); background: var(--card); width: 36px; height: 36px; border-radius: var(--r-sm); font-size: 1.2rem; line-height: 1; cursor: pointer; color: var(--muted); flex: none; }
+.dialog-body { padding: 1.25rem 1.5rem; max-height: 70vh; overflow-y: auto; }
+.dialog-body .status-steps { margin-bottom: 1.25rem; }
+.detail-list { display: grid; grid-template-columns: 130px 1fr; gap: 0.4rem 1rem; margin: 0 0 1.1rem; font-size: var(--text-sm); }
+.detail-list dt { color: var(--muted); font-weight: 600; }
+.detail-list dd { margin: 0; }
+.quote { background: var(--bg); border-left: 4px solid var(--teal-mid); border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: 0.75rem 1rem; margin: 0 0 1.1rem; font-size: 0.95rem; }
+.history { list-style: none; margin: 0 0 1.1rem; padding: 0; font-size: var(--text-sm); }
+.history li { padding: 0.45rem 0; border-top: 1px dashed var(--border); }
+.history time { color: var(--muted); font-size: var(--text-xs); display: block; }
+.dialog-foot { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 1rem 1.5rem; border-top: 1px solid var(--border); background: var(--bg); border-radius: 0 0 var(--r) var(--r); }
+
+/* ---------- Toast ---------- */
+.toast { position: fixed; left: 50%; bottom: 1.5rem; translate: -50% 0; z-index: 200; display: flex; align-items: center; gap: 0.6rem; background: var(--nav); color: #fff; padding: 0.8rem 1.1rem; border-radius: var(--r-sm); box-shadow: 0 10px 30px rgba(16,24,40,.25); font-size: var(--text-sm); font-weight: 500; max-width: calc(100% - 2rem); }
+.toast svg { width: 18px; height: 18px; color: #7FD3D5; flex: none; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .split { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 600px) {
+  .stats { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .bar-row { grid-template-columns: 1fr 60px; }
+  .bar-row strong { grid-column: 1 / -1; }
+  .detail-list { grid-template-columns: 1fr; }
+  .staff-bar select { min-width: 0; width: 100%; }
+  .staff-bar .field { flex-wrap: wrap; width: 100%; }
+  .toolbar .btn { margin-left: 0; }
+}
+
+.field label .opt { font-weight: 400; color: var(--muted); }
+
+.gap-top { margin-top: 1.25rem; }
+.gap-top-lg { margin-top: 2rem; }
+.table td.nowrap { white-space: nowrap; }
