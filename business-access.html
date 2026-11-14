@@ -6,7 +6,7 @@
   <title>Business Access | Mutiara Connect</title>
   <link rel="icon" href="images/brand/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/theme.css?v=3">
-  <!-- Page-specific styles: add a <style> block here or css/business-access.css -->
+  <link rel="stylesheet" href="css/portal-pages.css?v=1">
 </head>
 <body data-page="business">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -45,21 +45,14 @@
   <!-- ===== END HEADER ===== -->
 
   <main id="main" class="container">
-    <section class="page-header">
-      <p class="breadcrumb"><a href="index.html">Home</a> › <span aria-current="page">Business Access</span></p>
-      <h1>Business Access</h1>
-      <p>Find out whether customers and deliveries can reach shops near the works, and where the temporary entrances are.</p>
-    </section>
-
-    <section class="section">
-      <!-- TODO (Member C): build this page for F2 (FR4 to FR6). Delete this card when done. -->
-      <div class="card">
-        <h2>Page in progress</h2>
-        <p>Business premises list with access status (Open, Limited, Alternative entrance) and accessible pedestrian routes.</p>
-        <p>Owner: Member C. Use the shared classes in <code>css/theme.css</code> (see THEME.md) so this page matches the homepage.</p>
-        <a class="btn btn-primary" href="index.html">Back to home</a>
-      </div>
-    </section>
+    <section class="hero-sm"><img src="images/traffic-marshal.jpg" alt="" width="1200" height="445"><div><p class="breadcrumb"><a href="index.html">Home</a> › <span aria-current="page">Business Access</span></p><h1>Business Access</h1><p>Find out whether customers and deliveries can reach shops near the works, and where the temporary entrances are.</p></div></section>
+    <section class="x-card" aria-labelledby="b-h"><h2 id="b-h">Shops and premises near the works</h2><p class="x-sub">Search by shop name or road, then check the entrance to use.</p>
+      <form class="x-bar" onsubmit="return false"><div><label for="q">Search shop or road</label><input type="search" id="q" placeholder="e.g. Gelugor, clinic"></div>
+        <div><label for="f-status">Access status</label><select id="f-status"><option value="all">All statuses</option><option value="open">Open</option><option value="limited">Limited</option><option value="alt">Alternative entrance</option></select></div>
+        <div><label for="f-station">Station</label><select id="f-station"></select></div></form>
+      <p class="x-count" id="f-count" aria-live="polite"></p><ul class="x-prem" id="prem"></ul><p class="x-count" id="none" hidden>No premises match your search.</p></section>
+    <section class="x-card" aria-labelledby="p-h"><h2 id="p-h">Accessible pedestrian routes</h2><p class="x-sub">Footpath changes for elderly, OKU and wheelchair users. Routes link to the closure notices behind them.</p>
+      <div class="x-two"><img class="x-photo" src="images/station-commuters.jpg" alt="Commuters, including an elderly woman, on a station platform" width="1200" height="445"><div class="x-routes" id="routes"></div></div></section>
   </main>
 
   <!-- ===== FOOTER (identical on every page) ===== -->
@@ -76,5 +69,6 @@
   <!-- ===== END FOOTER ===== -->
 
   <script src="js/main.js?v=3"></script>
+  <script src="js/business-access.js?v=1"></script>
 </body>
 </html>
