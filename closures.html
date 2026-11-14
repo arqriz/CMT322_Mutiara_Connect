@@ -6,7 +6,7 @@
   <title>Closures & Detours | Mutiara Connect</title>
   <link rel="icon" href="images/brand/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/theme.css?v=3">
-  <!-- Page-specific styles: add a <style> block here or css/closures.css -->
+  <link rel="stylesheet" href="css/portal-pages.css?v=1">
 </head>
 <body data-page="closures">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -45,21 +45,24 @@
   <!-- ===== END HEADER ===== -->
 
   <main id="main" class="container">
-    <section class="page-header">
-      <p class="breadcrumb"><a href="index.html">Home</a> › <span aria-current="page">Closures & Detours</span></p>
-      <h1>Closures & Detours</h1>
-      <p>Current road closures, lane closures and pedestrian diversions along the Mutiara Line, with the detour for each.</p>
-    </section>
-
-    <section class="section">
-      <!-- TODO (Member C): build this page for F1 (FR1). Delete this card when done. -->
-      <div class="card">
-        <h2>Page in progress</h2>
-        <p>Closure map with filters, the full notice list (reuse .notice-list from the homepage) and a details section for each notice (ids n1 to n6).</p>
-        <p>Owner: Member C. Use the shared classes in <code>css/theme.css</code> (see THEME.md) so this page matches the homepage.</p>
-        <a class="btn btn-primary" href="index.html">Back to home</a>
+    <section class="hero-sm"><img src="images/hero-mutiara-line.jpg" alt="" width="1200" height="445"><div><p class="breadcrumb"><a href="index.html">Home</a> › <span aria-current="page">Closures &amp; Detours</span></p><h1>Closures &amp; Detours</h1><p>Current road closures, lane closures and pedestrian diversions along the Mutiara Line, with the detour for each.</p></div></section>
+    <section class="x-card" aria-labelledby="map-h">
+      <h2 id="map-h">Closure map</h2><p class="x-sub">Select a numbered marker or a notice to see its dates and detour.</p>
+      <form class="x-bar" onsubmit="return false">
+        <div><span class="x-count" style="display:block;margin:0 0 4px;font-weight:600;color:inherit">Type</span><div class="x-chips" id="type-chips" role="group" aria-label="Closure type"></div></div>
+        <div><label for="f-road">Road</label><select id="f-road"></select></div>
+        <div><label for="f-station">Station</label><select id="f-station"></select></div>
+        <button class="btn btn-outline btn-sm" type="button" id="f-reset">Clear filters</button>
+      </form>
+      <p class="x-count" id="f-count" aria-live="polite"></p>
+      <div class="x-grid">
+        <div><figure class="x-map" id="map"><img src="images/alignment-map.jpg" alt="Map of the Mutiara Line alignment from PSR-A in the south to KOMTAR and Penang Sentral in the north" width="900" height="954"><figcaption>Source: MRT Corp, via Gamuda</figcaption></figure>
+        <p class="x-legend"><span><i style="background:#B42318"></i>Partial road closure</span><span><i style="background:#C26A00"></i>Lane closure</span><span><i style="background:#14696B"></i>Pedestrian diversion</span></p></div>
+        <ul class="x-items" id="list"></ul>
       </div>
+      <p class="x-count" id="none" hidden>No notices match these filters.</p>
     </section>
+    <section aria-labelledby="det-h"><h2 id="det-h" style="margin:0 0 12px">Notice details and detours</h2><div id="details"></div></section>
   </main>
 
   <!-- ===== FOOTER (identical on every page) ===== -->
@@ -76,5 +79,6 @@
   <!-- ===== END FOOTER ===== -->
 
   <script src="js/main.js?v=3"></script>
+  <script src="js/closures.js?v=1"></script>
 </body>
 </html>
