@@ -6,7 +6,7 @@
   <title>Works Schedule | Mutiara Connect</title>
   <link rel="icon" href="images/brand/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/theme.css?v=3">
-  <!-- Page-specific styles: add a <style> block here or css/schedule.css -->
+  <link rel="stylesheet" href="css/portal-pages.css?v=1">
 </head>
 <body data-page="schedule">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -45,21 +45,26 @@
   <!-- ===== END HEADER ===== -->
 
   <main id="main" class="container">
-    <section class="page-header">
-      <p class="breadcrumb"><a href="index.html">Home</a> › <span aria-current="page">Works Schedule</span></p>
-      <h1>Works Schedule</h1>
-      <p>Planned construction work by area and date, so you know when night works and noisy activities will happen.</p>
+    <section class="hero-sm"><img src="images/mutiara-train.jpg" alt="" width="1200" height="445"><div><p class="breadcrumb"><a href="index.html">Home</a> › <span aria-current="page">Works Schedule</span></p><h1>Works Schedule</h1><p>Planned construction work by area and date, so you know when night works and noisy activities will happen.</p></div></section>
+    <section class="x-card" aria-labelledby="s-h">
+      <div class="x-bar" style="justify-content:space-between;align-items:center"><div><h2 id="s-h">Planned works</h2><p class="x-sub" style="margin:0">Nov 2026 to Jan 2027</p></div>
+        <div class="x-tabs" role="group" aria-label="View"><button type="button" id="v-cal" aria-pressed="true">Calendar</button><button type="button" id="v-list" aria-pressed="false">List</button></div></div>
+      <form class="x-bar" onsubmit="return false">
+        <div><label for="f-area">Area (station)</label><select id="f-area"></select></div>
+        <div><label for="f-from">From</label><input type="date" id="f-from" min="2026-11-01" max="2027-01-31"></div>
+        <div><label for="f-to">To</label><input type="date" id="f-to" min="2026-11-01" max="2027-01-31"></div>
+        <label style="display:flex;gap:8px;align-items:center;min-height:42px"><input type="checkbox" id="f-noisy"> Night or noisy works only</label>
+        <button class="btn btn-outline btn-sm" type="button" id="f-reset">Clear</button>
+      </form>
+      <p class="x-count" id="f-count" aria-live="polite"></p>
+      <div id="cal-view"><div class="x-calhead"><button class="btn btn-outline btn-sm" id="prev" type="button" aria-label="Previous month">‹ Prev</button><h3 id="mname"></h3><button class="btn btn-outline btn-sm" id="next" type="button" aria-label="Next month">Next ›</button></div><div class="x-cal" id="cal"></div>
+        <div class="x-card" style="margin:16px 0 0;background:#F8FAFB"><h3 id="day-h" style="margin:0 0 8px;font-size:1.05rem">Select a day</h3><div id="day-list"></div></div></div>
+      <div id="list-view" hidden style="overflow-x:auto"><table class="x-tbl"><thead><tr><th>Dates</th><th>Hours</th><th>Work</th><th>Area</th><th>Notice</th></tr></thead><tbody id="rows"></tbody></table></div>
     </section>
-
-    <section class="section">
-      <!-- TODO (Member C): build this page for F1 (FR2, FR3). Delete this card when done. -->
-      <div class="card">
-        <h2>Page in progress</h2>
-        <p>Calendar and list view filterable by area and date, plus area alert sign-up.</p>
-        <p>Owner: Member C. Use the shared classes in <code>css/theme.css</code> (see THEME.md) so this page matches the homepage.</p>
-        <a class="btn btn-primary" href="index.html">Back to home</a>
-      </div>
-    </section>
+    <section class="x-alert" id="alerts" aria-labelledby="al-h"><div><h2 id="al-h">Get works alerts for your area</h2><p>We tell you when a closure or night work is planned near your station.</p></div>
+      <form id="al-form" novalidate><div><label for="al-area">Nearest station</label><select id="al-area"></select></div><div><label for="al-contact">Email or WhatsApp number</label><input type="text" id="al-contact" placeholder="e.g. aisyah@email.com"></div>
+      <fieldset class="wide"><legend class="visually-hidden">Alert channel</legend><label><input type="radio" name="ch" value="email" checked> Email</label><label><input type="radio" name="ch" value="WhatsApp"> WhatsApp</label></fieldset>
+      <button class="btn btn-white wide" type="submit">Subscribe</button><p class="x-ok" id="al-msg" role="status"></p></form></section>
   </main>
 
   <!-- ===== FOOTER (identical on every page) ===== -->
@@ -76,5 +81,6 @@
   <!-- ===== END FOOTER ===== -->
 
   <script src="js/main.js?v=3"></script>
+  <script src="js/schedule.js?v=1"></script>
 </body>
 </html>
