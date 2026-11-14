@@ -6,7 +6,7 @@
   <title>Admin Dashboard | Mutiara Connect</title>
   <link rel="icon" href="images/brand/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="css/theme.css?v=3">
-  <link rel="stylesheet" href="css/staff.css?v=3">
+  <link rel="stylesheet" href="css/staff.css?v=4">
 </head>
 <body data-page="admin">
   <a class="skip-link" href="#main">Skip to main content</a>
@@ -215,6 +215,28 @@
     </section>
   </main>
 
+  <!-- View a forwarded complaint (read-only) -->
+  <dialog class="staff-dialog" id="view-dialog" aria-labelledby="vd-title">
+    <div class="dialog-head">
+      <div><h2 id="vd-title">Complaint</h2><p id="vd-sub"></p></div>
+      <button class="dialog-close" type="button" data-close aria-label="Close">×</button>
+    </div>
+    <div class="dialog-body">
+      <div id="vd-steps"></div>
+      <dl class="detail-list" id="vd-details"></dl>
+      <p class="quote" id="vd-text"></p>
+      <div id="vd-response-box">
+        <h3>Official response</h3>
+        <p class="response-box" id="vd-response"></p>
+      </div>
+      <h3>History</h3>
+      <ul class="history" id="vd-history"></ul>
+    </div>
+    <div class="dialog-foot">
+      <button class="btn btn-primary" type="button" data-close>Close</button>
+    </div>
+  </dialog>
+
   <!-- Edit content -->
   <dialog class="staff-dialog" id="edit-dialog" aria-labelledby="ed-title">
     <form method="dialog" id="edit-form" novalidate>
@@ -264,6 +286,6 @@
 
   <script src="js/main.js?v=3"></script>
   <script src="js/staff.js?v=1"></script>
-  <script src="js/admin.js?v=1"></script>
+  <script src="js/admin.js?v=2"></script>
 </body>
 </html>

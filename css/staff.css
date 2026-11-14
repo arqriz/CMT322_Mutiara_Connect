@@ -118,3 +118,7 @@
 .gap-top { margin-top: 1.25rem; }
 .gap-top-lg { margin-top: 2rem; }
 .table td.nowrap { white-space: nowrap; }
+
+/* Complaint manager: assigned authority + View button, official response box */
+.assigned { display: flex; align-items: center; justify-content: flex-end; gap: 0.75rem; text-align: left; }
+.response-box { background: var(--green-bg); border-left: 4px solid var(--green-ink); border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: 0.75rem 1rem; margin: 0 0 1.1rem; font-size: 0.95rem; }

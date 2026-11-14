@@ -37,6 +37,24 @@
     { id: 'MC-2026-04731', cat: 'Business impact', text: 'Request for signage showing our shops are still open.', road: 'Jalan Tun Dr Awang', station: 'S09', received: '2026-10-15', status: 'Resolved', to: 'state', forwarded: '2026-10-16', hours: 80 }
   ];
 
+  // Who reported each complaint, and the authority responses so far
+  // (same wording as the Authority Portal sample data).
+  var REPORTERS = {
+    'MC-2026-04846': 'Ong L. T.', 'MC-2026-04845': 'Faridah A.', 'MC-2026-04844': 'Kumar R.', 'MC-2026-04843': 'Tan M. L.', 'MC-2026-04842': 'Azman H.',
+    'MC-2026-04840': 'Chong B. K.', 'MC-2026-04835': 'Muthu S.', 'MC-2026-04829': 'Wong C. M.', 'MC-2026-04822': 'Lim S. Y.', 'MC-2026-04790': 'Tan K. L.',
+    'MC-2026-04817': 'Aisyah R.', 'MC-2026-04811': 'Halim M.', 'MC-2026-04803': 'Siti Z.', 'MC-2026-04770': 'Ravi K.', 'MC-2026-04761': 'Goh P. H.',
+    'MC-2026-04744': 'Lee C. W.', 'MC-2026-04731': 'Noraini S.'
+  };
+  var RESPONSES = {
+    'MC-2026-04817': [['10 Nov 2026, 3.00 pm', 'Noisy works will stop at 11.00 pm from 11 Nov. Noise barriers being installed.']],
+    'MC-2026-04811': [['9 Nov 2026, 4.00 pm', 'Bilingual signs approved, to be installed by 20 Nov.']],
+    'MC-2026-04803': [['7 Nov 2026, 11.00 am', 'Daily patrols added from 8 Nov.']],
+    'MC-2026-04770': [['30 Oct 2026, 10.45 am', 'Officer sent to direct traffic, light repaired.']],
+    'MC-2026-04761': [['28 Oct 2026, 1.15 pm', 'Steel plate fixed and checked. Thank you for reporting.']],
+    'MC-2026-04744': [['25 Oct 2026, 9.00 am', 'Trucks now wait inside the site yard with engines off. Night deliveries limited to 4 trucks.']],
+    'MC-2026-04731': [['19 Oct 2026, 2.30 pm', 'Signs saying "Shops open as usual" installed along Jalan Tun Dr Awang.']]
+  };
+
   // ---------- Sample accounts and content ----------
   var requests = [
     { name: 'Farid Osman', org: 'Mutiara Line Contractor, Package 3', email: 'farid.osman@example.com', role: 'Contractor', date: '2026-11-12' },
@@ -126,7 +144,8 @@
         ? '<div class="forward-cell"><label class="visually-hidden" for="to-' + i + '">Forward ' + c.id + ' to</label><select id="to-' + i + '">' +
             Object.keys(AUTH_NAMES).map(function (k) { return '<option value="' + k + '"' + (k === ROUTE[c.cat] ? ' selected' : '') + '>' + AUTH_NAMES[k] + '</option>'; }).join('') +
             '</select><button class="btn btn-sm btn-primary" type="button" data-forward="' + i + '">Forward</button></div>'
-        : AUTH_NAMES[c.to] + '<span class="sub">' + (isOverdue(c) ? '<span class="due-late">Overdue, forwarded ' + S.fmtDate(c.forwarded) + '</span>' : 'Forwarded ' + S.fmtDate(c.forwarded)) + '</span>';
+        : '<div class="assigned"><div>' + AUTH_NAMES[c.to] + '<span class="sub">' + (isOverdue(c) ? '<span class="due-late">Overdue, forwarded ' + S.fmtDate(c.forwarded) + '</span>' : 'Forwarded ' + S.fmtDate(c.forwarded)) + '</span></div>' +
+          '<button class="btn btn-sm btn-outline" type="button" data-view="' + i + '">View</button></div>';
       return '<tr>' +
         '<td class="id">' + c.id + '</td>' +
         '<td>' + S.esc(c.text) + '<span class="sub">' + S.esc(c.road) + ' · ' + c.station + ' ' + S.esc(S.stationName(c.station)) + '</span></td>' +
@@ -145,17 +164,52 @@
     F('to-' + i).value = ROUTE[sel.value];   // update the suggested authority
   });
   F('review-rows').addEventListener('click', function (e) {
+    var v = e.target.closest('[data-view]');
+    if (v) { viewComplaint(complaints[+v.getAttribute('data-view')]); return; }
     var b = e.target.closest('[data-forward]');
     if (!b) return;
     var c = complaints[+b.getAttribute('data-forward')];
     c.to = F('to-' + b.getAttribute('data-forward')).value;
     c.status = 'Forwarded';
     c.forwarded = '2026-11-13';
+    c.forwardedAt = S.stamp();
     renderReview(); renderStats(); renderDashboard();
     S.toast(c.id + ' forwarded to ' + AUTH_NAMES[c.to] + '. They have 3 days to respond.');
   });
   F('r-status').addEventListener('change', renderReview);
   F('r-search').addEventListener('input', renderReview);
+
+  // Read-only view of a forwarded complaint: details, official response and history.
+  function historyOf(c) {
+    var h = [[S.fmtDate(c.received), 'Report received']];
+    if (c.to) h.push([c.forwardedAt || S.fmtDate(c.forwarded), 'Forwarded to ' + AUTH_NAMES[c.to] + ' by Admin (' + ADMINS.complaints.name + ')']);
+    (RESPONSES[c.id] || []).forEach(function (r) { h.push([r[0], AUTH_NAMES[c.to] + ': ' + r[1]]); });
+    if (c.status === 'Resolved') h.push(['', 'Marked Resolved by ' + AUTH_NAMES[c.to]]);
+    return h;
+  }
+  function viewComplaint(c) {
+    var resp = RESPONSES[c.id];
+    var first = c.hours != null
+      ? c.hours + ' hours' + (c.hours > TARGET_HOURS ? ' <span class="due-late">(over the 72-hour target)</span>' : '')
+      : (isOverdue(c) ? '<span class="due-late">None yet, overdue</span>' : 'None yet');
+    F('vd-title').textContent = 'Complaint ' + c.id;
+    F('vd-sub').textContent = c.cat + ' · ' + c.road;
+    F('vd-steps').innerHTML = S.steps(c.status);
+    F('vd-details').innerHTML =
+      '<dt>Category</dt><dd>' + S.esc(c.cat) + '</dd>' +
+      '<dt>Location</dt><dd>' + S.esc(c.road) + '</dd>' +
+      '<dt>Nearest station</dt><dd>' + S.stationChip(c.station) + '</dd>' +
+      '<dt>Reported</dt><dd>' + S.fmtDate(c.received) + ' by ' + S.esc(REPORTERS[c.id] || 'Registered user') + '</dd>' +
+      '<dt>Assigned to</dt><dd>' + AUTH_NAMES[c.to] + ', forwarded ' + S.fmtDate(c.forwarded) + '</dd>' +
+      '<dt>First response</dt><dd>' + first + '</dd>';
+    F('vd-text').textContent = '“' + c.text + '”';
+    F('vd-response-box').hidden = !resp;
+    if (resp) F('vd-response').textContent = resp[resp.length - 1][1];
+    F('vd-history').innerHTML = historyOf(c).reverse().map(function (h) {
+      return '<li>' + (h[0] ? '<time>' + h[0] + '</time>' : '') + S.esc(h[1]) + '</li>';
+    }).join('');
+    F('view-dialog').showModal();
+  }
 
   // ---------- FR14: response dashboard ----------
   function bar(label, value, max, text, late) {
